@@ -1,0 +1,30 @@
+name: Rust
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Build
+      run: cargo build --release
+      working-directory: ./rust_sqlite_cli
+
+    - name: Test
+      run: cargo test
+      working-directory: ./rust_sqlite_cli
+
+    - name: Lint with Clippy
+      run: cargo clippy -- -D warnings
+      working-directory: ./rust_sqlite_cli
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: rust_sqlite_cli_binary
+        path: rust_sqlite_cli/target/release/rust_sqlite_cli
