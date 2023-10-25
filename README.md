@@ -3,7 +3,7 @@
 [![Rust](https://github.com/nogibjj/IDSProject2Conterno/actions/workflows/rust.yml/badge.svg)](https://github.com/nogibjj/IDSProject2Conterno/actions/workflows/rust.yml)
 
 ### Video Demo
-[Video Demo](https://www.youtube.com/watch?v=vr61SqOd29Y&ab_channel=AbneyJohnson)
+[Video Demo](https://www.youtube.com/watch?v=EJ0Rfpz9PmY&ab_channel=AbneyJohnson)
 
 
 ## Project Explanation
@@ -26,7 +26,34 @@ cargo test
 ```
 to run the rust tests, but these also automatically run anytime we push our code, via github actions.
 
+## How to run binary (Installation and Running the Project)
 
+1. **Clone the repository**
+
+```bash
+git clone https://github.com/nogibjj/IDSProject2Conterno
+cd IDSProject2Conterno
+```
+
+2. **Build the project**
+
+```bash
+   cargo build --release
+```
+
+   This will create an optimized binary in the `target/release/` directory.
+
+3. **Run the project**
+
+```bash
+   cargo run --release
+```
+4. **Alternate Method (directly running executable)**
+```bash
+cd target
+cd release
+./rust_sqlite_cli
+```
 
 ## Dependencies
 
@@ -61,28 +88,6 @@ Visit [SQLite Download Page](https://www.sqlite.org/download.html) and download 
 
 [Rusqlite](https://github.com/rusqlite/rusqlite) is a set of Rust bindings for SQLite. It will be automatically handled by Cargo when you build or run the project.
 
-## Installation and Running the Project
-
-1. **Clone the repository**
-
-```bash
-git clone https://github.com/nogibjj/IDSProject2Conterno
-cd IDSProject2Conterno
-```
-
-2. **Build the project**
-
-```bash
-   cargo build --release
-```
-
-   This will create an optimized binary in the `target/release/` directory.
-
-3. **Run the project**
-
-```bash
-   cargo run --release
-```
 
 
 ## Use of Github Copilot
