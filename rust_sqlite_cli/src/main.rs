@@ -1,6 +1,7 @@
-use rusqlite::{Connection, Result, types::Value};
-
+use rusqlite::{Connection};
 use std::io;
+
+mod db_logic;
 
 fn main() {
     let conn = Connection::open("movies.db").expect("Unable to open database");
@@ -17,7 +18,7 @@ fn main() {
             break;
         }
 
-        match execute_query(&conn, query) {
+        match db_logic::execute_query(&conn, query) {
             Ok(rows) => {
                 for row in rows {
                     for (i, column) in row.iter().enumerate() {
@@ -34,25 +35,4 @@ fn main() {
             }
         }
     }
-}
-
-fn execute_query(conn: &Connection, query: &str) -> Result<Vec<Vec<Value>>> {
-    let mut stmt = conn.prepare(query)?;
-    let rows = stmt.query_map([], |row| {
-        let mut values = vec![];
-        for i in 0..row.column_count() {
-            values.push(row.get(i)?);
-        }
-        Ok(values)
-    })?;
-
-    let mut all_rows = vec![];
-    for row_result in rows {
-        match row_result {
-            Ok(row) => all_rows.push(row),
-            Err(e) => return Err(e),
-        }
-    }
-
-    Ok(all_rows)
 }
